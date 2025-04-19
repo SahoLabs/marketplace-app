@@ -1,0 +1,33 @@
+# Ignore the environment file (sensitive data like secrets)
+.env
+
+# Ignore SQLite database file
+test.db
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore IDE configuration folders (if applicable)
+.idea/
+.vscode/
+
+# Ignore virtual environment folder (if using venv or similar)
+venv/
+.env/
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore the migration history folder if it's unnecessary
+migrations/
+
+# Ignore coverage reports and other temp files
+.coverage
+*.cover
+*.py,cover
