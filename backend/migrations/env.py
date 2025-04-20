@@ -10,10 +10,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Import your database setup and models
 from app.core.database import Base
-from app.core.config import settings
+from app.core.config import settings  # Import settings to access DB_URL
 
-# 👇 Import all models here to register them with Base.metadata
-from app.models import user  # Example: import your model modules
+# ✅ Import all models to register with Base
+from app import models  # This imports __init__.py inside app/models
 
 # Alembic Config
 config = context.config
@@ -22,12 +22,11 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# This tells Alembic which tables to track
 target_metadata = Base.metadata
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode."""
-    url = settings.DB_URL
+    url = settings.DB_URL  # Get the DB_URL from settings (from .env)
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -55,7 +54,7 @@ def run_migrations_online() -> None:
         with context.begin_transaction():
             context.run_migrations()
 
-# Run it
+# Run migration based on mode (offline or online)
 if context.is_offline_mode():
     run_migrations_offline()
 else:
